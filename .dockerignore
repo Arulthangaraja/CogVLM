@@ -1,0 +1,9 @@
+cdk
+pipeline
+.github
+archive_split
+basic_demo
+composite_demo
+openai_demo
+routes
+buildspec*
