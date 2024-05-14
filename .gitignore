@@ -1,13 +1,3 @@
-.hypothesis/
-__pycache__
-output.png
-fewshot-data/
-checkpoints/
-records.db
-server.py
-examples/*grounding.png
-archive*
-hostfile
-runs/
-*.idea/
-archive_split
+node_modules
+package-lock.json
+yarn-error.log
