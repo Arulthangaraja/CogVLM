@@ -1,0 +1,45 @@
+{
+  "vpc-provider:account=704816378710:filter.vpc-id=vpc-0d9178cc1a715fd4a:region=ap-south-1:returnAsymmetricSubnets=true": {
+    "vpcId": "vpc-0d9178cc1a715fd4a",
+    "vpcCidrBlock": "10.0.0.0/21",
+    "availabilityZones": [],
+    "subnetGroups": [
+      {
+        "name": "Application",
+        "type": "Isolated",
+        "subnets": [
+          {
+            "subnetId": "subnet-02d105ad5626077ff",
+            "cidr": "10.0.0.0/24",
+            "availabilityZone": "ap-south-1a",
+            "routeTableId": "rtb-09d5b19717a279412"
+          },
+          {
+            "subnetId": "subnet-0e737ed104371534e",
+            "cidr": "10.0.1.0/24",
+            "availabilityZone": "ap-south-1b",
+            "routeTableId": "rtb-069b98daa0ae168e9"
+          }
+        ]
+      },
+      {
+        "name": "Ingress",
+        "type": "Public",
+        "subnets": [
+          {
+            "subnetId": "subnet-0a1b89a1e913b452e",
+            "cidr": "10.0.2.0/24",
+            "availabilityZone": "ap-south-1a",
+            "routeTableId": "rtb-0d9280ab4b25d0c6b"
+          },
+          {
+            "subnetId": "subnet-0e4f8838b2fd34f9b",
+            "cidr": "10.0.3.0/24",
+            "availabilityZone": "ap-south-1b",
+            "routeTableId": "rtb-0a05645b337c7c48d"
+          }
+        ]
+      }
+    ]
+  }
+}

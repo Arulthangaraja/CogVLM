@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 import os, sys
+import boto3
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import torch
@@ -35,8 +36,20 @@ def main():
         **vars(args)
     ), url='local', overwrite_args={'model_parallel_size': 1})
     model = model.eval()
-    model_args.save = './checkpoints/merged_model_{}'.format(model_args.eva_args["image_size"][0])
+    image_size = model_args.eva_args["image_size"][0]
+    local_save_path = f"./checkpoints/merged_model_{image_size}"
+    model_args.save = local_save_path
+
+    # Save the fine-tuned model locally (assuming deepspeed is used for saving)
     save_checkpoint(1, model, None, None, model_args)
+
+    #Saving finetuned model in s3
+    s3_client = boto3.client('s3')
+    bucket_name = 'iris-ocr-poc-documents'
+    s3_object_key = f'models/merged_model_{image_size}.pt' 
+
+    # Upload the saved model from local path to S3
+    s3_client.upload_file(local_save_path, bucket_name, s3_object_key)
 
 if __name__ == "__main__":
     main()

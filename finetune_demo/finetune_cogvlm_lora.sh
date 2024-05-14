@@ -22,6 +22,9 @@ OPTIONS_SAT="SAT_HOME=~/.sat_models"
 OPTIONS_NCCL="NCCL_DEBUG=info NCCL_IB_DISABLE=0 NCCL_NET_GDR_LEVEL=2 LOCAL_WORLD_SIZE=$NUM_GPUS_PER_WORKER"
 HOST_FILE_PATH="hostfile"
 
+#accessing dataset from s3
+aws s3 cp s3://iris-ocr-poc-documents/dataset/  archive_split --recursive
+
 train_data="./archive_split/train"
 valid_data="./archive_split/valid"
 

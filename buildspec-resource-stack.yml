@@ -1,0 +1,25 @@
+version: 0.2
+
+env:
+  parameter-store:
+    GITHUB_TOKEN: "/github/token"
+phases:
+  install:
+    runtime-versions:
+      nodejs: 18
+    commands:
+      - npm install -g yarn
+      - npm -g install aws-cdk
+  pre_build:
+    commands: 
+      - npm config set @unifo:registry https://npm.pkg.github.com
+      - echo "//npm.pkg.github.com/:_authToken=$GITHUB_TOKEN" >> $HOME/.npmrc
+      - yarn config set registry https://registry.yarnpkg.com
+  build: 
+    commands:
+      - cd cdk
+      - yarn install
+  post_build:
+    commands:
+      - cdk ls
+      - cdk diff $RESOURCE_STACK_NAME

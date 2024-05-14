@@ -50,9 +50,9 @@ class ItemDataset(Dataset):
             return {}
         img_dict = self.process_img(img)
         # text
-        label = data.split('/')[-1].split('.')[0]
+        label = data.split('/')[-2]
         uni_key = label
-        text_dict = self.process_text(label, "CAPTCHA:")
+        text_dict = self.process_text(label, "DOCUMENT_CLASSIFICATION : ")
         if text_dict is None:
             print_rank0(f"Process text failed. Please check the max_target_length & max_source_length.\n The data is {data}", level=logging.WARNING)
             return {}
